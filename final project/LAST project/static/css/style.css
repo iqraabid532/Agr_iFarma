@@ -1,0 +1,225 @@
+/* ===========================
+   AgriFarma Responsive Theme
+   Colors: Green & White
+   =========================== */
+
+:root {
+    --primary: #2e7d32;     /* deep green */
+    --secondary: #66a1bb;   /* light green */
+    --background: #ffffff;
+    --text: #333333;
+    --border: #e0e0e0;
+    --gradient: linear-gradient(135deg, #2e7d32, #66bb6a);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* ===== HEADER & NAV ===== */
+
+header {
+    background: var(--gradient);
+    color: rgb(75, 41, 41);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== MAIN AREA ===== */
+
+main {
+    padding: 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.flash {
+    background: #e8f5e9;
+    color: var(--primary);
+    padding: 10px 15px;
+    border-left: 4px solid var(--secondary);
+    margin-bottom: 15px;
+}
+
+/* ===== HEADINGS ===== */
+
+h2 {
+    color: var(--primary);
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+/* ===== FORMS ===== */
+
+form {
+    background: #f9fdf9;
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    max-width: 400px;
+}
+
+form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 5px rgba(102, 187, 106, 0.5);
+}
+
+/* ===== BUTTONS ===== */
+
+button,
+input[type="submit"] {
+    background: var(--gradient);
+    color: rgb(62, 53, 53);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* ===== PRODUCT GRID ===== */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* ===== TABLES ===== */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+}
+
+table th,
+table td {
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background: var(--secondary);
+    color: white;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 15px;
+    background: var(--gradient);
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    form {
+        width: 100%;
+    }
+}

@@ -1,0 +1,184 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriFarma Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* --- Framer Dashboard Inspired UI --- */
+        :root {
+            --primary: #3C9F40;
+            --secondary: #2D3436;
+            --accent: #00B894;
+            --bg: #F9FAFB;
+            --text-dark: #2C3E50;
+            --text-light: #636E72;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: var(--bg);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        header {
+            background: #fff;
+            width: 250px;
+            border-right: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            padding: 1rem 0;
+        }
+
+        header h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 0 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            margin-left: 250px;
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .flash {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+            header {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #eee;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem;
+            }
+
+            nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 0;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== SIDEBAR ===== -->
+     <header>
+        <div>
+            <h1>AgriFarma</h1>
+            <nav>
+                <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">🏠 Home</a>
+                <a href="{{ url_for('forum') }}" class="{% if request.endpoint == 'forum' %}active{% endif %}">💬 Forum</a>
+                <a href="{{ url_for('knowledge') }}" class="{% if request.endpoint == 'knowledge' %}active{% endif %}">📚 Knowledge</a>
+                <a href="{{ url_for('consultancy') }}" class="{% if request.endpoint == 'consultancy' %}active{% endif %}">🧑‍🌾 Consultancy</a>
+                <a href="{{ url_for('shop') }}" class="{% if request.endpoint == 'shop' %}active{% endif %}">🛒 Shop</a>
+
+                {% if session.get('user') %}
+                    <a href="{{ url_for('profile') }}" class="{% if request.endpoint == 'profile' %}active{% endif %}">👤 Profile</a>
+                    <a href="{{ url_for('logout') }}">🚪 Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">🔐 Login</a>
+                    <a href="{{ url_for('register') }}">📝 Register</a>
+                {% endif %}
+
+                {% if session.get('user') %}
+                    {% set current_user = session.get('name') %}
+                    {% if current_user == 'admin' %}
+                        <a href="{{ url_for('admin_dashboard') }}">🧭 Admin</a>
+                    {% endif %}
+                {% endif %}
+            </nav>
+        </div>
+    
+    </header>
+
+    <!-- ===== MAIN CONTENT =====  -->
+     <main>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <div class="flash">{{ msg }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %} 
+        <!-- Page-specific content goes here -->
+         {% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>      
+
+
+
+
+
+
+
+
+
+
+

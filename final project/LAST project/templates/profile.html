@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>User Profile</h2>
+{% if session.get('name') %}
+<p><b>Name:</b> {{ session.get('name') }}</p>
+<p><b>User ID:</b> {{ session.get('user') }}</p>
+<p><b>contact:</b> {{ session.get('03454747222') }}</p>
+<p><b>city :</b> {{ session.get('none') }}</p>
+<p><b>state:</b> {{ session.get('user') }}</p>
+<p><b>Expertise:</b> {{ session.get('user') }}</p>
+{% else %}
+<p>Please <a href="{{ url_for('login') }}">login</a> to view your profile.</p>
+{% endif %}
+{% endblock %}

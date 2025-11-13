@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>🛒 Your Cart</h2>
+
+{% if cart and cart|length > 0 %}
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 70%;">
+    <thead>
+        <tr style="background-color: #f4f4f4;">
+            <th>Product</th>
+            <th>Price ($)</th>
+            <th>Quantity</th>
+            <th>Subtotal ($)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ "%.2f"|format(item.price) }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ "%.2f"|format(item.price * item.quantity) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 style="margin-top: 20px;">Total: ${{ "%.2f"|format(total) }}</h3>
+
+<a href="{{ url_for('shop') }}" class="btn btn-primary">← Continue Shopping</a>
+
+{% else %}
+<p>Your cart is empty.</p>
+<a href="{{ url_for('shop') }}" class="btn btn-success">🛍️ Go to Shop</a>
+{% endif %}
+
+<style>
+table {
+    margin-top: 20px;
+}
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+.btn-success { background-color: #28a745; }
+.btn-success:hover { background-color: #218838; }
+.btn-primary { background-color: #007bff; }
+.btn-primary:hover { background-color: #0069d9; }
+</style>
+{% endblock %}

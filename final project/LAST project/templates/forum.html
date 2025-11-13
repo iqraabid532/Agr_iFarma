@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Discussion Forum</h2>
+
+<form action="{{ url_for('add_post') }}" method="POST">
+    <input type="text" name="title" placeholder="Post Title" required><br><br>
+    <textarea name="content" placeholder="Write your opinion here..." rows="4" cols="50"></textarea><br><br>
+    <button type="submit">Add Post</button>
+</form>
+
+<hr>
+<h4>All Posts</h4>
+{% for post in posts %}
+<div class="post">
+    <h4>{{ post.title }}</h4>
+    <p>{{ post.content }}</p>
+    <small>Posted on {{ post.created_at.strftime('%Y-%m-%d') }}</small>
+    <hr>
+</div>
+{% else %}
+<p>No posts yet.</p>
+{% endfor %}
+{% endblock %}

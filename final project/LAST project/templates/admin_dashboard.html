@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<h3>Registered Users</h3>
+<ul>
+{% for u in users %}
+<li>{{ u.name }} — {{ u.email }}</li>
+{% endfor %}
+</ul>
+
+<h3>Products</h3>
+<ul>
+{% for p in products %}
+<li>{{ p.name }} — ${{ p.price }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
